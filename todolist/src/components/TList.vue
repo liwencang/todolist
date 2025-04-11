@@ -1,17 +1,17 @@
 <template>
   <ul class="todo-main">
-    <TItem/>
-    <Testt/>
+    <TItem v-for="t in todos" :key="t.id" :todo="t"/>
   </ul>
 </template>
 
 <script>
-import TItem from './TItem.vue'
+import TItem from "./TItem.vue";
 export default {
   name: "TList",
   components: {
-    TItem
-  }
+    TItem,
+  },
+  props:['todos']
 };
 </script>
 

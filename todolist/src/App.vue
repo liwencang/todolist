@@ -2,8 +2,8 @@
   <div id="root">
     <div class="todo-container">
       <div class="todo-wrap">
-        <THeader/>
-        <TList/>
+        <THeader :addtodo="addtodo"/>
+        <TList :todos="todos"/>
         <TFooter/>
       </div>
     </div>
@@ -14,6 +14,7 @@
 import THeader from './components/THeader.vue'
 import TList from './components/TList.vue'
 import TFooter from './components/TFooter.vue'
+import { nanoid } from 'nanoid'
 
 export default {
   name: 'App',
@@ -21,6 +22,26 @@ export default {
     THeader,
     TList,
     TFooter
+  },
+  data() {
+    return {
+      todos: [
+        { id: "001", title: "学习", completed: true },
+        { id: "002", title: "看书", completed: false },
+        { id: "003", title: "早睡", completed: true },
+      ],
+    }
+  },
+  methods:{
+    //添加todo
+    addtodo(e){
+      const todoObj = {
+        id:nanoid(),
+        title:e.target.value,
+        completed:false
+      }
+      this.todos.unshift(todoObj)
+    }
   }
 }
 </script>

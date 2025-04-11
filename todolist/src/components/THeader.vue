@@ -1,12 +1,29 @@
 <template>
   <div class="todo-header">
-    <input type="text" placeholder="请输入你的任务名称，按回车键确认" />
+    <input type="text" @keyup.enter="add" v-model="title" placeholder="请输入你的任务名称，按回车键确认" />
   </div>
 </template>
 
 <script>
 export default {
   name: "THeader",
+  data(){
+    return {
+      title:""
+    }
+  },
+  props:['addtodo'],
+  methods:{
+    //把新增的数据校验，通过调用App.vue函数的方式传给App.vue
+    add(e){
+      if(!this.title.trim()) {
+        this.title = ''
+        return
+      }
+      this.addtodo(e)
+      this.title = ''
+    }
+  }
 };
 </script>
 
