@@ -3,7 +3,7 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <THeader :addtodo="addtodo"/>
-        <TList :todos="todos"/>
+        <TList :todos="todos" @change="updateToDoStatus()" :updateToDoStatus="updateToDoStatus"/>
         <TFooter/>
       </div>
     </div>
@@ -41,6 +41,13 @@ export default {
         completed:false
       }
       this.todos.unshift(todoObj)
+    },
+    updateToDoStatus(id){
+      this.todos.forEach(todo => {
+        if(todo.id === id){
+          todo.completed = !todo.completed
+        }
+      })
     }
   }
 }

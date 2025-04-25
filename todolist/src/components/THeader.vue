@@ -14,6 +14,7 @@ export default {
   },
   props:['addtodo'],
   methods:{
+    //添加todo
     //把新增的数据校验，通过调用App.vue函数的方式传给App.vue
     add(e){
       if(!this.title.trim()) {
