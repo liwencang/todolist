@@ -3,7 +3,10 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <THeader :addtodo="addtodo"/>
-        <TList :todos="todos" @change="updateToDoStatus()" :updateToDoStatus="updateToDoStatus"/>
+        <TList :todos="todos" 
+        @change="updateToDoStatus()" 
+        :updateToDoStatus="updateToDoStatus"
+        :deleteTodo="deleteTodo"/>
         <TFooter/>
       </div>
     </div>
@@ -48,6 +51,9 @@ export default {
           todo.completed = !todo.completed
         }
       })
+    },
+    deleteTodo(id){
+      this.todos = this.todos.filter(todo => todo.id !== id)
     }
   }
 }

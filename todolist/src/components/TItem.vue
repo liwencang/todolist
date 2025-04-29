@@ -8,18 +8,25 @@
       />
       <span>{{ todo.title }}</span>
     </label>
-    <button class="btn btn-danger" style="display: none">删除</button>
+    <button class="btn btn-danger" @click="delTodo(todo.id)">删除</button>
   </li>
 </template>
 
 <script>
 export default {
   name: "TItem",
-  props: ["todo","updateToDoStatus"],
+  props: ["todo","updateToDoStatus","deleteTodo"],
   methods:{
     setToDoStatus(id){
       console.log(id);
       this.updateToDoStatus(id)
+    },
+    delTodo(todoId){
+      if(confirm("删除此待办")){
+        this.deleteTodo(todoId)
+        console.log(todoId);
+        
+      }
     }
   }
 };
