@@ -18,14 +18,11 @@ export default {
   props: ["todo","updateToDoStatus","deleteTodo"],
   methods:{
     setToDoStatus(id){
-      console.log(id);
       this.updateToDoStatus(id)
     },
     delTodo(todoId){
       if(confirm("删除此待办")){
         this.deleteTodo(todoId)
-        console.log(todoId);
-        
       }
     }
   }
