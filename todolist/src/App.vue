@@ -2,7 +2,7 @@
   <div id="root">
     <div class="todo-container">
       <div class="todo-wrap">
-        <THeader :addtodo="addtodo" />
+        <THeader @addtodo="addtodo" />
         <TList
           :todos="todos"
           @change="updateToDoStatus()"
@@ -11,8 +11,8 @@
         />
         <TFooter
           :todos="todos"
-          :deleteCompleted="deleteCompleted"
-          :checkAlltodo="checkAlltodo"
+          @deleteCompleted="deleteCompleted"
+          @checkAlltodo="checkAlltodo"
         />
       </div>
     </div>
@@ -70,7 +70,7 @@ export default {
     todos:{
       deep:true,
       handler(value){
-        console.log(value);
+        // console.log(value);
         localStorage.setItem('todos',JSON.stringify(value))
         
       }

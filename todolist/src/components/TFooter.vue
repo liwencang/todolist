@@ -15,7 +15,12 @@
 <script>
 export default {
   name: "TFooter",
-  props: ["todos", "deleteCompleted","checkAlltodo"],
+  props: ["todos", "checkAlltodo"],
+  methods: {
+    deleteCompleted(){
+      this.$emit('deleteCompleted')
+    }
+  },
   computed: {
     completedTotal() {
       return this.todos.reduce((pre, current) => {
@@ -30,7 +35,7 @@ export default {
         return this.completedTotal == this.todosTotal && this.todosTotal > 0;
       },
       set(value) {
-        this.checkAlltodo(value)
+        this.$emit('checkAlltodo',value);
       },
     },
   },

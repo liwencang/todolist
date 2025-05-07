@@ -12,7 +12,6 @@ export default {
       title:""
     }
   },
-  props:['addtodo'],
   methods:{
     //添加todo
     //把新增的数据校验，通过调用App.vue函数的方式传给App.vue
@@ -21,7 +20,7 @@ export default {
         this.title = ''
         return
       }
-      this.addtodo(e)
+      this.$emit('addtodo',e)
       this.title = ''
     }
   }
