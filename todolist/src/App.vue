@@ -34,11 +34,7 @@ export default {
   },
   data() {
     return {
-      todos: [
-        { id: "001", title: "学习", completed: true },
-        { id: "002", title: "看书", completed: false },
-        { id: "003", title: "早睡", completed: true },
-      ],
+      todos: JSON.parse(localStorage.getItem('todos'))|| [],
     };
   },
   methods: {
@@ -70,6 +66,16 @@ export default {
       })
     },
   },
+  watch: {
+    todos:{
+      deep:true,
+      handler(value){
+        console.log(value);
+        localStorage.setItem('todos',JSON.stringify(value))
+        
+      }
+    }
+  }
 };
 </script>
 
