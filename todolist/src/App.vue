@@ -56,6 +56,8 @@ export default {
     },
     deleteTodo(id) {
       this.todos = this.todos.filter((todo) => todo.id !== id);
+      console.log("deleteTodo()");
+      
     },
     deleteCompleted() {
       this.todos = this.todos.filter((todo) => todo.completed == false);
@@ -65,6 +67,7 @@ export default {
         todo.completed = value
       })
     },
+    
   },
   watch: {
     todos:{
@@ -75,7 +78,11 @@ export default {
         
       }
     }
-  }
+  },
+  mounted() {
+      this.$bus.$on('delTodo',this.deleteTodo)
+      this.$bus.$on('updateToDoStatus',this.updateToDoStatus)
+    }
 };
 </script>
 

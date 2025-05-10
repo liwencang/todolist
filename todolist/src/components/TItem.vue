@@ -15,14 +15,14 @@
 <script>
 export default {
   name: "TItem",
-  props: ["todo","updateToDoStatus","deleteTodo"],
+  props: ["todo"],
   methods:{
     setToDoStatus(id){
-      this.updateToDoStatus(id)
+      this.$bus.$emit('updateToDoStatus',id)
     },
     delTodo(todoId){
       if(confirm("删除此待办")){
-        this.deleteTodo(todoId)
+        this.$bus.$emit('delTodo',todoId)
       }
     }
   }

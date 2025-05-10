@@ -15,7 +15,7 @@
 <script>
 export default {
   name: "TFooter",
-  props: ["todos", "checkAlltodo"],
+  props: ["todos"],
   methods: {
     deleteCompleted(){
       this.$emit('deleteCompleted')
