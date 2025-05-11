@@ -1,7 +1,6 @@
 <template>
   <ul class="todo-main">
-    <TItem v-for="t in todos" 
-    :key="t.id" :todo="t" 
+    <TItem v-for="t in todos" :key="t.id" :todo="t" 
     :updateToDoStatus="updateToDoStatus"
     :deleteTodo="deleteTodo"/>
   </ul>

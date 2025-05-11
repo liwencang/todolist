@@ -3,7 +3,7 @@ import App from './App.vue'
 
 Vue.config.productionTip = false
 
-new Vue({
+const vm = new Vue({
   render: h => h(App),
   beforeCreate(){
     Vue.prototype.$bus = this

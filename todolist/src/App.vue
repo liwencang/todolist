@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      todos: JSON.parse(localStorage.getItem('todos'))|| [],
+      todos: JSON.parse(localStorage.getItem("todos")) || [],
     };
   },
   methods: {
@@ -57,32 +57,45 @@ export default {
     deleteTodo(id) {
       this.todos = this.todos.filter((todo) => todo.id !== id);
       console.log("deleteTodo()");
-      
     },
     deleteCompleted() {
       this.todos = this.todos.filter((todo) => todo.completed == false);
     },
     checkAlltodo(value) {
-      this.todos.forEach(todo => {
+      this.todos.forEach((todo) => {
         todo.completed = value
-      })
+      });
     },
     
+    editBlur(id, value) {
+      if (!value.trim()) return alert("标题不能为空");
+      this.todos.forEach((todo) => {
+        if (todo.id == id) {
+          todo.title = value
+          todo.isEdit = false
+        }
+      });
+    },
   },
   watch: {
-    todos:{
-      deep:true,
-      handler(value){
+    todos: {
+      deep: true,
+      handler(value) {
         // console.log(value);
-        localStorage.setItem('todos',JSON.stringify(value))
-        
-      }
-    }
+        localStorage.setItem("todos", JSON.stringify(value));
+      },
+    },
   },
   mounted() {
-      this.$bus.$on('delTodo',this.deleteTodo)
-      this.$bus.$on('updateToDoStatus',this.updateToDoStatus)
-    }
+    this.$bus.$on("delTodo", this.deleteTodo);
+    this.$bus.$on("updateToDoStatus", this.updateToDoStatus);
+    this.$bus.$on("editTodo", this.editTodo);
+    this.$bus.$on("editBlur", this.editBlur);
+  },
+  beforeDestroy() {
+    this.$bus.$off("delTodo");
+    this.$bus.$off("updateToDoStatus");
+  },
 };
 </script>
 
@@ -110,7 +123,12 @@ body {
   background-color: #da4f49;
   border: 1px solid #bd362f;
 }
-
+.btn-edit {
+  color: rgb(0, 119, 255);
+  background-color: skyblue;
+  border: 1px solid rgb(42, 187, 244);
+  margin-right: 5px;
+}
 .btn-danger:hover {
   color: #fff;
   background-color: #bd362f;
